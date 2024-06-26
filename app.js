@@ -14,6 +14,7 @@ mongoose.connect(process.env.MONGO_URI).then(() => console.log('MongoDB Connecte
 
 // Routes
 app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/admin', require('./routes/adminRoutes'));
 
 const PORT = process.env.PORT || 5000;
 

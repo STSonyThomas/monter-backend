@@ -102,6 +102,14 @@ const validate =  async (req, res) => {
 }
 
 //profile function
+const userProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.user.id).select('-password');
+        res.json(user);
+    } catch (err) {
+        res.status(500).send('Server error');
+    }
+}
 
 //update function
 const updateUser = async (req, res) => {
@@ -129,5 +137,6 @@ module.exports = {
     register,
     validate,
     userLogin,
-    updateUser
+    updateUser,
+    userProfile
 }

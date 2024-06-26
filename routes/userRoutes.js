@@ -1,6 +1,6 @@
 //requires? express, bodayparser,jsonwebtoken,nodemailer
 const express = require("express");
-const {register,validate,userLogin,updateUser} = require("../controller/appController.js");
+const {register,validate,userLogin,updateUser,userProfile} = require("../controller/appController.js");
 const {auth} = require("../middleware/auth.js");
 const router = express.Router()
 
@@ -19,7 +19,7 @@ router.post("/login",userLogin);
 //update
 router.put("/update",auth,updateUser)
 //additional path for user details
-
+router.get("/profile",auth,userProfile)
 
 
 module.exports = router;
