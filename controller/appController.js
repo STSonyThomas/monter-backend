@@ -104,9 +104,30 @@ const validate =  async (req, res) => {
 //profile function
 
 //update function
+const updateUser = async (req, res) => {
+    const { location, age, work, DOB, description } = req.body;
 
+    try {
+        // console.log(req.user);
+        const user = await User.findById(req.user.user.id);
+
+        if (location) user.location = location;
+        if (age) user.age = age;
+        if (work) user.work = work;
+        if (DOB) user.DOB = DOB;
+        if (description) user.description = description;
+
+        await user.save();
+
+        res.json(user);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Server error');
+    }
+}
 module.exports = {
     register,
     validate,
-    userLogin
+    userLogin,
+    updateUser
 }
