@@ -29,7 +29,7 @@ const sendOTP = (email, otp) => {
         }
     });
 };
-
+//register function
 const register = async (req, res) => {
     const { email, username, password } = req.body;
     console.log(email,username,password);
@@ -56,6 +56,36 @@ const register = async (req, res) => {
     }
 }
 
+
+//login function
+
+
+//validate function
+const validate =  async (req, res) => {
+    const { email, otp } = req.body;
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) return res.status(400).json({ msg: 'Invalid email or OTP' });
+
+        if (user.otp !== otp) return res.status(400).json({ msg: 'Invalid OTP' });
+
+        user.isVerified = true;
+        user.otp = undefined;
+
+        await user.save();
+
+        res.status(200).json({ msg: 'Account verified. You can now log in.' });
+    } catch (err) {
+        res.status(500).send('Server error');
+    }
+}
+
+//profile function
+
+//update function
+
 module.exports = {
     register,
+    validate
 }
