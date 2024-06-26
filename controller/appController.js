@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 const User = require('../models/User');
-const {EMAIL_USER,EMAIL_PASS}=process.env;
+const {EMAIL_USER,EMAIL_PASS,JWT_SECRET}=process.env;
 
 const sendOTP = (email, otp) => {
     const transporter = nodemailer.createTransport({
@@ -58,7 +58,27 @@ const register = async (req, res) => {
 
 
 //login function
+const userLogin = async (req, res) => {
+    const { email, username, password } = req.body;
 
+    try {
+        const user = await User.findOne({ email }) || await User.findOne({ username });
+        if (!user) return res.status(400).json({ msg: 'Invalid credentials' });
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) return res.status(400).json({ msg: 'Invalid credentials' });
+
+        const payload = { user: { id: user.id } };
+
+        jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
+            if (err) throw err;
+            res.json({ token });
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Server error');
+    }
+}
 
 //validate function
 const validate =  async (req, res) => {
@@ -87,5 +107,6 @@ const validate =  async (req, res) => {
 
 module.exports = {
     register,
-    validate
+    validate,
+    userLogin
 }

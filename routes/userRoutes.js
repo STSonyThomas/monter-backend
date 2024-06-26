@@ -1,6 +1,6 @@
 //requires? express, bodayparser,jsonwebtoken,nodemailer
 const express = require("express");
-const {register,validate} = require("../controller/appController.js");
+const {register,validate,userLogin} = require("../controller/appController.js");
 const router = express.Router()
 
 
@@ -13,7 +13,7 @@ router.post("/register",register);
 router.post("/validate-otp",validate);
 
 //login
-
+router.post("/login",userLogin);
 
 //update
 
