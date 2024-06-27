@@ -15,7 +15,9 @@ mongoose.connect(process.env.MONGO_URI).then(() => console.log('MongoDB Connecte
 // Routes
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/admin', require('./routes/adminRoutes'));
-
+app.get("/",(req,res)=>{
+  res.sendFile(__dirname + '/index.html')
+})
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

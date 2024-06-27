@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Endpoints</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px 0;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+        footer a {
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        footer img {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <h1>API Endpoints</h1>
+    <table>
+        <tr>
+            <th>Endpoint</th>
+            <th>Method</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>/api/users/register</td>
+            <td>POST</td>
+            <td>User registration</td>
+        </tr>
+        <tr>
+            <td>/api/users/validate-otp</td>
+            <td>POST</td>
+            <td>Validate OTP</td>
+        </tr>
+        <tr>
+            <td>/api/users/login</td>
+            <td>POST</td>
+            <td>User login</td>
+        </tr>
+        <tr>
+            <td>/api/users/me</td>
+            <td>GET</td>
+            <td>Get user info</td>
+        </tr>
+        <tr>
+            <td>/api/users/update</td>
+            <td>PUT</td>
+            <td>Update user info</td>
+        </tr>
+        <tr>
+            <td>/api/admin/register</td>
+            <td>POST</td>
+            <td>Admin registration</td>
+        </tr>
+        <tr>
+            <td>/api/admin/login</td>
+            <td>POST</td>
+            <td>Admin login</td>
+        </tr>
+        <tr>
+            <td>/api/admin/users</td>
+            <td>GET</td>
+            <td>View all users (admin)</td>
+        </tr>
+        <tr>
+            <td>/api/admin/user/:username</td>
+            <td>GET</td>
+            <td>View user details (admin)</td>
+        </tr>
+        <tr>
+            <td>/api/admin/user/:username</td>
+            <td>DELETE</td>
+            <td>Delete user (admin)</td>
+        </tr>
+    </table>
+
+    <footer>
+        <a href="https://github.com/STSonyThomas" target="_blank">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub">
+        </a>
+        <a href="mailto:the.sonythomas@gmail.com">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Mail_%28iOS%29.svg" alt="Email">
+        </a>
+        <a href="tel:+918136984259">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Phone_icon.png" alt="Phone">
+        </a>
+    </footer>
+</body>
+</html>
